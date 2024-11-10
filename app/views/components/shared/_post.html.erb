@@ -72,7 +72,7 @@
 <% else %>
     <div class="p-6 my-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="flex justify-between items-center">
-            <div class="flex">
+            <div class="flex w-2/6">
                 <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                 </div>
@@ -85,7 +85,11 @@
                     <p class="text-gray-600 font-light text-sm"><%= time_ago_in_words(post.created_at) %> ago</p>
                 </div>
             </div>
-            <%= link_to 'Edit', edit_home_path(post) %>
+            <div class="actions flex justify-between items-center w-40">
+                <%= link_to 'Edit', edit_home_path(post), class: "p-4 hover:bg-blue-200"%>
+                <%= button_to 'Delete', delete_post_path(post), method: :delete, class: "p-4 hover:bg-blue-200" %>
+            </div>
+
         </div>
         <p class="my-5 font-normal text-gray-500 dark:text-gray-400"><%= post.content %></p>
         <div class="flex border-y-2">

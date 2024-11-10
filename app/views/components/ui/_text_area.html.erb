@@ -1,5 +1,4 @@
-<% if logged_in? %>
-<%= form_with(model: post, url: home_index_path,local: true) do |form| %>
+<%= form_with(model: @post, url: create_post_path) do |form| %>
     <div class="flex bg-white border border-gray-200 rounded-lg shadow p-6">
         <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600
 
@@ -9,7 +8,7 @@
 
         <div class="w-full ml-5">
             <p for="message" class="font-bold py-2"><%= @user.username %></p>
-            <%= form.text_area :username, class:"hidden", value: "maryuuus" %>
+            <%= form.hidden_field :username, value: @user.username %>
             <%= form.text_area :content, 
             rows: 4, 
             class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", 
@@ -22,9 +21,6 @@
             </svg>
         <% end %>
     </div>
-<% end %>
-<% else %>
-    <h1>Sign up to dibsify your spot!</h1>
 <% end %>
 
 

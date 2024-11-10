@@ -1,15 +1,16 @@
 class HomeController < ApplicationController
-  include Postable
-
+  # to make sure proper post is selected
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
-  before_action :set_user_status
 
   def index
-    @user_status = ""
+    if !logged_in?
+      redirect_to login_path
+    end
+    @posts= Post.all.order(created_at: :desc)
+    # equivalent to new
     @post = Post.new
   end
 
-  # POST /posts
   def create
     @post = Post.new(post_params)
     if @post.save
@@ -19,26 +20,20 @@ class HomeController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/:id
   def update
     if @post.update(post_params)
-      # redirect_to @post, notice: 'Post was successfully updated.'
       redirect_to root_path, notice: "Post was successfully updated."
     else
       render :edit
     end
   end
 
-
-  # GET /posts/:id
   def show
   end
 
-  # GET /posts/:id/edit
+  # GET /:id/edit
   def edit
   end
-
-
 
   # DELETE /posts/:id
   def destroy
@@ -56,9 +51,5 @@ class HomeController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def post_params
     params.require(:post).permit(:username, :content)
-  end
-
-  def set_user_status
-    @user_status = "maryus"
   end
 end

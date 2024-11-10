@@ -2,7 +2,7 @@
 module Postable
     extend ActiveSupport::Concern
 
-    included do 
+    included do
         before_action :set_posts, only: :index
     end
 
@@ -11,4 +11,3 @@ module Postable
         @posts= Post.all.order(created_at: :desc)
     end
 end
-

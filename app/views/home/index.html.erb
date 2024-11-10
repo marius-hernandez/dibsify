@@ -1,6 +1,5 @@
 <div class="m-auto w-1/2">
     <%= render 'components/ui/text_area', post: @post %>
-    
     <% @posts.each do |post| %>
         <%= render partial:'components/shared/post', locals: {post:post, editable:false} %>
     <% end %>

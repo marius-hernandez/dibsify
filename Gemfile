@@ -63,3 +63,5 @@ gem "rails_logger"
 gem "foreman"
 gem "graphql"
 gem "graphiql-rails", group: :development
+
+gem 'pry', '~> 0.14.2'

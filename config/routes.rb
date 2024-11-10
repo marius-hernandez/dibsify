@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "users/new"
   # if Rails.env.development?
   #   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   # end
@@ -7,10 +8,17 @@ Rails.application.routes.draw do
 
   # pages
   get "profile", to: "profile#index"
-  get "about", to: "home#about"
   get "posts", to: "posts#index"
-  get "signup", to: "signup#index"
-  get "login", to: "login#index"
+
+  get "signup", to: "users#new"
+  post "signup", to: "user#create"
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+
+  get "logout", to: "sessions#destroy"
+
+  post "create_post", to: "home#create"
+  delete "delete_post/:id", to: "home#destroy", as: :delete_post
 
   # helpers
   get "up" => "rails/health#show", as: :rails_health_check
@@ -20,15 +28,6 @@ Rails.application.routes.draw do
   # resources
   resources :posts
   resources :home
-  resources :login
-  resources :signup
-  resources :users
+  resources :users, only: [ :new, :create ]
   resources :profile
-
-  namespace :api do
-    namespace :v1 do
-      post "signup", to: "users#signup"
-      post "login", to: "users#login"
-    end
-  end
 end

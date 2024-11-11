@@ -10,17 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_07_131426) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_11_004501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
+  create_table "comments", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_uuid"
+    t.uuid "post_uuid"
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.string "comment"
+  end
+
   create_table "posts", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.string "username"
     t.uuid "user_uuid"
   end
 
@@ -32,5 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_131426) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "posts", column: "post_uuid", primary_key: "uuid"
+  add_foreign_key "comments", "users", column: "user_uuid", primary_key: "uuid"
   add_foreign_key "posts", "users", column: "user_uuid", primary_key: "uuid"
 end

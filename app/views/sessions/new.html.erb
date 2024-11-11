@@ -3,8 +3,10 @@
   <h1 class="font-black text-center text-5xl">Login</h1>
   <% if flash[:notice] %>
     <%= render partial:'components/shared/notice'%>
-  <% else %>
+  <% elsif flash[:alert] %>
     <%= render partial:'components/shared/alert'%>
+  <% elsif flash[:error] %>
+    <%= render partial:'components/shared/error'%>
   <% end %>
   
   <div class="relative z-0 w-full mb-5 group">

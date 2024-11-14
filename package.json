@@ -5,6 +5,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.12",
+    "alpinejs": "^3.14.3",
     "flowbite": "^2.5.2"
   }
 }

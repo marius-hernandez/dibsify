@@ -34,13 +34,13 @@
             <%= form.text_field :content,
             class:"my-5 font-normal text-gray-500 dark:text-gray-400 w-full rounded-lg"
             %>
-            
+            <%= render partial: 'components/shared/posts/post_pictures', locals:{post:post} %>
             <%= render  partial: 'components/shared/posts/post_action' %>
         </div>
     <% end %>
 <% else %>
     <%= form_with(model: [post, Comment.new]) do |form| %>
-        <div class="p-6 my-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 my-10  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-between items-center">
                 <%= render partial: 'components/shared/posts/post_header', locals:{post:post} %>
                 <% if post.user_uuid == current_user.uuid %>
@@ -52,6 +52,7 @@
 
             </div>
             <p class="my-5 font-normal text-gray-500 dark:text-gray-400"><%= post.content %></p>
+            <%= render partial: 'components/shared/posts/carousel', locals:{post:post} %>
             <%= render  partial: 'components/shared/posts/post_action' %>
 
             <div class="flex mt-5">

@@ -13,7 +13,6 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@{{< current_version >}}/dist/flowbite.min.css" />
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -21,10 +20,12 @@
 
   <body>
     <%= render 'components/shared/navbar'%>  
+    
     <main class="container mx-auto px-5">
     <%= yield %>
     </main>
     <%= render 'components/shared/footer'%>
     <%= debug(params) if Rails.env.development? %>
+    
   </body>
 </html>

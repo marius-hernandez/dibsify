@@ -1,13 +1,26 @@
 Rails.application.routes.draw do
+  resources :pins
+  # devise related
+  devise_for :users,
+  path: "",
+  controllers: {
+    sessions: "users/sessions",
+    registrations: "users/registrations"
+  },
+  path_names: {
+    sign_up: "signup",
+    sign_in: "login"
+  }
+
+
+
   root "posts#index"
 
   # pages
   get "profile", to: "profile#index"
   get "posts", to: "posts#index"
 
-  get "signup", to: "users#new"
   post "signup", to: "user#create"
-  get "login", to: "sessions#new"
   post "login", to: "sessions#create"
 
   get "logout", to: "sessions#destroy"
@@ -25,6 +38,5 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :comments
-  resources :users, only: [ :new, :create ]
   resources :profile
 end

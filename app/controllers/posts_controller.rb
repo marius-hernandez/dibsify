@@ -2,8 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    if !logged_in?
-      redirect_to login_path
+    if !user_signed_in?
+      redirect_to login_path, alert: "You must login"
     end
     @posts= Post.all.order(created_at: :desc)
     # equivalent to new
@@ -47,6 +47,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, pictures: [])
   end
 end

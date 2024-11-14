@@ -1,7 +1,9 @@
-<%= form_with model:@user, local:true, html:{class:"mx-auto w-1/2"} do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), local:true, html:{class:"mx-auto w-1/2"}) do |f| %>
   <h1 class="font-black text-center text-5xl">Sign up</h1>
-  <%= render partial:'components/shared/error', locals: {user:@user} %>
+
+  <%= render partial: 'components/shared/flash' %>
   <br />
+
   <div class="relative z-0 w-full mb-5 group">
     <%=
       f.text_field :username,

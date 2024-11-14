@@ -1,0 +1,10 @@
+<div id="<%= dom_id pin %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= pin.title %>
+  </p>
+  <% pin.compressed_pics.each do |picture| %>
+    <%= image_tag url_for(picture), class: "your-image-class" %>
+  <% end %>
+
+</div>

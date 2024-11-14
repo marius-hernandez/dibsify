@@ -1,0 +1,5 @@
+<div class="grid grid-cols-2 gap-4 bg-yellow-300 w-full h-full">
+    <% post.compressed_pics.each do |picture| %>
+      <%= image_tag url_for(picture), class: "h-auto max-w-full rounded-lg object-none" %>
+    <% end %>
+</div>

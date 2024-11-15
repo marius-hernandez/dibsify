@@ -1,2 +1,2 @@
-web: rails server
+web: rails server --environment development
 css: rails tailwindcss:watch

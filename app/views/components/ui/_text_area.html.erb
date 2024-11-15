@@ -1,14 +1,11 @@
-<%= form_with(model: post, url: home_index_path,local: true) do |form| %>
+<%= form_with(model: @post, url: create_post_path) do |form| %>
     <div class="flex bg-white border border-gray-200 rounded-lg shadow p-6">
-        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600
-
-        ">
+        <div class="relative w-10 h-10 overflow-hidden rounded-full dark:bg-gray-600">
             <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
         </div>
 
         <div class="w-full ml-5">
-            <p for="message" class="font-bold py-2">maryuuus</p>
-            <%= form.text_area :username, class:"hidden", value: "maryuuus" %>
+            <%= link_to current_user.username, profile_path, class:"font-bold" %>
             <%= form.text_area :content, 
             rows: 4, 
             class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", 
@@ -21,6 +18,7 @@
             </svg>
         <% end %>
     </div>
+    <%= form.file_field :pictures, multiple:true %>
 <% end %>
 
 

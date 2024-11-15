@@ -36,6 +36,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/:id
   def destroy
+    @post.comments.destroy_all
     @post.destroy
     redirect_to root_path, notice: "Post was successfully destroyed."
   end

@@ -15,4 +15,11 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 5, maximum: 255 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }
+
+
+  def compressed_pics
+    pictures.map do |pic|
+      pic.variant(resize_to_limit: [ 150, 150 ]).processed
+    end
+  end
 end

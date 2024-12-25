@@ -64,7 +64,7 @@ gem "foreman"
 gem "graphql"
 gem "graphiql-rails", group: :development
 
-gem "pry", "~> 0.14.2"
+gem "pry", "~> 0.15.2"
 gem "ostruct"
 
 gem "ruby-vips", "~> 2.2", ">= 2.2.2"
